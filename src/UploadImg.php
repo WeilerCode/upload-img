@@ -183,13 +183,7 @@ class UploadImg
         return $this -> msg;
     }
 
-    /**
-     *
-     *
-     * 4000/2000
-     * 3000/1500
-     */
-
+    // 限制大小
     private function limitSize()
     {
         $width      =   (int)$this->width;
@@ -210,7 +204,7 @@ class UploadImg
     }
 
     /**
-     * 上传缩略图,结合Cropper
+     * 上传缩略图
      * $aspectRatio 数组存在时则为保存多个不同大小的图片
      */
     public function upThumb($file, $data, $aspectRatio = null)
@@ -236,12 +230,15 @@ class UploadImg
             unlink($this->src);
         }
 
-        $response = array(
-            'state'  => 200,
-            'message' => $this->getMsg(),
-            'result' => asset($this->getResult()),
-            'thumb' =>  $this->thumb
-        );
+        $response = [
+            'result'    =>  'OK',
+            'code'      =>  200,
+            'msg'       =>  'Successful',
+            'data'      =>  [
+                'path'  =>  $this->getResult(),
+                'name'  =>  $this->thumb
+            ]
+        ];
 
         return $response;
     }
