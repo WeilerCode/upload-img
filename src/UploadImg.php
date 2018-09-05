@@ -11,12 +11,12 @@ class UploadImg
     protected $dst;
 
 
-    protected $savePath;       //文件保存路径
-    protected $SourceName;     //源文件保存名
-    protected $thumb;          //缩略图保存名
-    protected $width = 200;          //保存图片的宽度
-    protected $height = 200;         //保存图片的高度
-    protected $limit = 3000;   //限制最大输入宽高
+    public $savePath;       //文件保存路径
+    public $SourceName;     //源文件保存名
+    public $thumb;          //缩略图保存名
+    public $width = 200;          //保存图片的宽度
+    public $height = 200;         //保存图片的高度
+    public $limit = 3000;   //限制最大输入宽高
 
     /**
      * 初始化
