@@ -4,19 +4,19 @@ namespace Weiler\UploadImg;
 
 class UploadImg
 {
-    private $src;
-    private $msg;
-    private $extension;
-    private $data;
-    Private $dst;
+    protected $src;
+    protected $msg;
+    protected $extension;
+    protected $data;
+    protected $dst;
 
 
-    public $savePath;       //文件保存路径
-    public $SourceName;     //源文件保存名
-    public $thumb;          //缩略图保存名
-    public $width = 200;          //保存图片的宽度
-    public $height = 200;         //保存图片的高度
-    public $limit = 3000;   //限制最大输入宽高
+    protected $savePath;       //文件保存路径
+    protected $SourceName;     //源文件保存名
+    protected $thumb;          //缩略图保存名
+    protected $width = 200;          //保存图片的宽度
+    protected $height = 200;         //保存图片的高度
+    protected $limit = 3000;   //限制最大输入宽高
 
     /**
      * 初始化
@@ -30,13 +30,13 @@ class UploadImg
         $this->thumb = 't_'.date('YmdHis').'.png';
     }
 
-    private function setData($data) {
+    protected function setData($data) {
         if (!empty($data)) {
             $this -> data = json_decode(stripslashes($data));
         }
     }
 
-    private function setDst()
+    protected function setDst()
     {
         $this->dst = $this->savePath.$this->thumb;
     }
@@ -44,7 +44,7 @@ class UploadImg
     /**
      * 图片源文件
      */
-    private function setImgSource($file)
+    protected function setImgSource($file)
     {
         $extension = $file->guessExtension();
         if ($extension == 'jpeg' || $extension == 'gif' || $extension == 'png')
@@ -67,7 +67,7 @@ class UploadImg
     /**
      * 保存缩略图
      */
-    private function setThumb($data, $src, $dst)
+    protected function setThumb($data, $src, $dst)
     {
         //防止画布参数溢出
         $this->limitSize();
@@ -184,7 +184,7 @@ class UploadImg
     }
 
     // 限制大小
-    private function limitSize()
+    protected function limitSize()
     {
         $width      =   (int)$this->width;
         $height     =   (int)$this->height;
